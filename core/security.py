@@ -1,3 +1,4 @@
+import random
 from datetime import datetime, timedelta
 from typing import Any, Union
 
@@ -10,13 +11,11 @@ pwd_context = CryptContext(
     deprecated="auto",
     bcrypt__rounds=(4 if settings.ENV_NAME == "test" else 11),
 )
-
-
 ALGORITHM = "HS256"
 
 
 def create_access_token(
-    subject: Union[str, Any], expires_delta: timedelta = None
+        subject: Union[str, Any], expires_delta: timedelta = None
 ) -> str:
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
@@ -29,8 +28,17 @@ def create_access_token(
     return encoded_jwt
 
 
-def verify_password(plain_password: str, hashed_password: str) -> bool:
-    return pwd_context.verify(plain_password, hashed_password)
+def generate_password() -> str:
+    chars = '/*!&$#?=@<>abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
+    length = 8
+    password = ''
+    for i in range(length):
+        password += random.choice(chars)
+    return password
+
+
+def verify_password(plain_password: str, true_password: str) -> bool:
+    return plain_password == true_password
 
 
 def get_password_hash(password: str) -> str:

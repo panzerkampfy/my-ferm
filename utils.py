@@ -44,3 +44,8 @@ def camel2snake(camel: str) -> str:
 
 def get_root_dir() -> str:
     return os.path.dirname(os.path.abspath(__file__))
+
+
+def has_cyr(word) -> bool:
+    alphabet = set('абвгдеёжзийклмнопрстуфхцчшщъыьэюя')
+    return not alphabet.isdisjoint(word.lower())

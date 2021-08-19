@@ -1,72 +1,46 @@
-import re
-from datetime import date, datetime
+from datetime import datetime
 from typing import Optional
-from uuid import UUID
 
-from schemas import APIModel, Category, City, Gender, Role, Subject
-from pydantic import BaseModel, EmailStr, validator
+from schemas import APIModel
 
 
-class UserBase(APIModel):
-    email: EmailStr
+class UserCreate(APIModel):
     first_name: str
     middle_name: str
     last_name: str
-    birth_date: date
-    phone: Optional[str]
+    role_id: int
 
 
-class UserCreate(UserBase):
-    first_name: str
-    middle_name: str
-    last_name: str
-    role: Optional[Role]
-
-
-class User(UserBase):
-    """
-    A model for User.
-    """
-
+class User(UserCreate):
     id: int
-    first_name: str
-    middle_name: str
-    last_name: str
     login: str
     created_at: datetime
     updated_at: datetime
-    deleted_at: datetime
-    role: Optional[Role]
+    deleted_at: Optional[datetime]
+
+
+class UserUpdate(APIModel):
+    login: Optional[str]
+    first_name: Optional[str]
+    middle_name: Optional[str]
+    last_name: Optional[str]
+    role_id: Optional[int]
+
+
+class ResetPassword(APIModel):
+    password: str
 
 
 class TokenLogin(APIModel):
-    """
-    A model for login requests.
-    """
-
     login: str
     password: str
 
 
 class Token(APIModel):
-    """
-    A model for providing token and user info after authentication.
-    """
-
     user: User
     access_token: str
     token_type: str
 
 
-class OAuth2ComplaintToken(BaseModel):
-    """
-    A model for token response.
-    Note: access_token and token_type is snake case because of RFC6749 section 4.1.4
-    """
-
-    access_token: str
-    token_type: str
-
-
 class TokenPayload(APIModel):
-    sub: UUID
+    sub: int
