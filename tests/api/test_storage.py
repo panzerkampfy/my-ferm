@@ -20,7 +20,7 @@ class TestStorage:
             json=data,
             headers=headers
         )
-        assert response.status_code == 200
+        assert response.status_code == 201
 
     def test_storage_create_wrong_credentials(self, user_factory, token_headers_factory):
         password = "test"

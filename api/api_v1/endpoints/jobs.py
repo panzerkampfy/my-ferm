@@ -18,6 +18,7 @@ router = APIRouter()
 @router.post(
     "/job",
     response_model=schemas.Job,
+    status_code=201
 )
 async def create_job(
         create_data: schemas.JobCreate,
@@ -35,6 +36,7 @@ async def create_job(
 @router.post(
     "/job/type",
     response_model=schemas.JobType,
+    status_code=201
 )
 async def create_job_type(
         create_data: schemas.JobTypeCreate,

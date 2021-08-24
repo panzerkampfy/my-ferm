@@ -35,6 +35,7 @@ def response_login(user):
 
 @router.post(
     "/signup",
+    status_code=201
 )
 async def register(
         signup_data: schemas.UserCreate,

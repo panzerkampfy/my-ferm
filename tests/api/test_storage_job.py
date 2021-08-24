@@ -20,16 +20,16 @@ class TestStorageJob:
                                 job_factory
                                 ):
         password = "test"
-        user = user_factory(password=password, role_id=1)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(password=password, role_name="Администратор")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
 
-        job_type = job_type_factory()
         product_type = product_type_factory()
         product = product_factory(type_id=product_type.id)
         zone_type = zone_type_factory()
         zone = zone_factory(type_id=zone_type.id)
         product_zone = product_zone_factory(product_id=product.id, zone_id=zone.id)
+        job_type = job_type_factory()
         job = job_factory(type_id=job_type.id, user_id=worker.id, product_zone_id=product_zone.id)
         storage = storage_factory()
 
@@ -43,7 +43,7 @@ class TestStorageJob:
             json=data,
             headers=headers
         )
-        assert response.status_code == 200
+        assert response.status_code == 201
 
     def test_storage_job_update(self,
                                 user_factory,
@@ -59,8 +59,8 @@ class TestStorageJob:
                                 storage_job_factory
                                 ):
         password = "test"
-        user = user_factory(password=password, role_id=1)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(password=password, role_name="Администратор")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()
@@ -97,8 +97,8 @@ class TestStorageJob:
                                            storage_job_factory
                                            ):
         password = "test"
-        user = user_factory(password=password, role_id=1)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(password=password, role_name="Администратор")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()
@@ -136,8 +136,8 @@ class TestStorageJob:
                                 storage_job_factory
                                 ):
         password = "test"
-        user = user_factory(password=password, role_id=1)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(password=password, role_name="Администратор")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()
@@ -170,8 +170,8 @@ class TestStorageJob:
                                          storage_job_factory
                                          ):
         password = "test"
-        user = user_factory(password=password, role_id=1)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(password=password, role_name="Администратор")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()

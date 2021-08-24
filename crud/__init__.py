@@ -1,5 +1,5 @@
 from .crud_user import user  # noqa: F401
-from .crud_modeles_types import CRUDRole, CRUDBase, CRUDZoneType, CRUDProductType
+from .crud_role import role, CRUDBase
 from .crud_zone import zone, zone_type
 from .crud_product import product, product_type
 from .crud_job import job, job_type

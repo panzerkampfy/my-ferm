@@ -1,5 +1,5 @@
-import models, utils
-from core import security
+import models
+import utils
 from core.config import settings
 from db.session import SessionLocal
 from sqlalchemy.orm import Session
@@ -16,39 +16,25 @@ def init_db(db: Session) -> None:
         lambda db: (
             models.Role,
             dict(
-                defaults=dict(name="Менеджер", description="Судья соревнований"),
+                defaults=dict(name="Менеджер", description="Позиция менеджера"),
+            ),
+        ),
+        lambda db: (
+            models.Role,
+            dict(
+               defaults=dict(name="Работник", description="Позиция работника"),
             ),
         ),
         lambda db: (
             models.User,
             dict(
-                # first_name=settings.FIRST_ADMIN_USERNAME,
-                # middle_name=settings.FIRST_ADMIN_USERNAME,
-                # last_name=settings.FIRST_ADMIN_USERNAME,
-                # login=settings.FIRST_ADMIN_USERNAME,
+                password=settings.FIRST_ADMIN_PASSWORD,
+                role_id=1,
                 defaults=dict(
                     first_name=settings.FIRST_ADMIN_USERNAME,
                     middle_name=settings.FIRST_ADMIN_USERNAME,
                     last_name=settings.FIRST_ADMIN_USERNAME,
                     login=settings.FIRST_ADMIN_USERNAME,
-                    password=settings.FIRST_ADMIN_PASSWORD,
-                    role=db.query(models.Role)
-                    .filter(models.Role.code == "admin")
-                    .first(),
-                ),
-            ),
-        ),
-        lambda db: (
-            models.GradeType,
-            dict(
-                judge_role_id=db.query(models.JudgeRole)
-                .filter(models.JudgeRole.code == "brigade_master")
-                .first()
-                .id,
-                defaults=dict(
-                    name="Оценка председателя бригады",
-                    description="-",
-                    code="brigade_master_grade",
                 ),
             ),
         ),

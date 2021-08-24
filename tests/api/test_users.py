@@ -1,7 +1,7 @@
 import pytest
 
 
-class TestStorageJob:
+class TestUsers:
     @pytest.fixture(autouse=True)
     def setup(self, client, db):
         self.client = client
@@ -12,8 +12,8 @@ class TestStorageJob:
                           token_headers_factory,
                           ):
         password = "test"
-        user = user_factory(password=password, role_id=1)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(login="manager", password=password, role_name="Менеджер")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
         data = {
             "login": "string",
@@ -34,8 +34,8 @@ class TestStorageJob:
                                     token_headers_factory,
                                     ):
         password = "test"
-        user = user_factory(password=password, role_id=2)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(login="manager", password=password, role_name="Менеджер")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
         data = {
             "login": "string",

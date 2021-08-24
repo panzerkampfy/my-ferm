@@ -1,0 +1,32 @@
+version: '3'
+
+volumes:
+  myferm_postgres_data_local: {}
+
+services:
+  fastapi_local:
+    build:
+      context: .
+      dockerfile: ./compose/local/fastapi/Dockerfile
+    image: myferm_fastapi_local
+    volumes:
+      - .:/app
+      - /app/.venv/
+    env_file:
+      - ./.envs/.local/.fastapi
+    environment:
+      - MODULE_NAME=core.main
+    depends_on:
+      - postgres_local
+    ports:
+      - 8012:80
+    command: /start.sh
+
+  postgres_local:
+    image: postgres:12
+    volumes:
+      - myferm_postgres_data_local:/var/lib/postgresql/data/pgdata
+    env_file:
+      - ./.envs/.local/.postgres
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata

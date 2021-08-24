@@ -1,0 +1,2 @@
+SQLALCHEMY_DATABASE_URI=postgresql://user:password@juds_grading_postgres_local:5432/myferm
+SECRET_KEY=safety-comes-first

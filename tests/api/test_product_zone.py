@@ -8,16 +8,16 @@ class TestProductZone:
         self.db = db
 
     def test_product_zone_create(self,
-                        user_factory,
-                        token_headers_factory,
-                        product_factory,
-                        zone_factory,
-                        product_type_factory,
-                        zone_type_factory,
-                        ):
+                                 user_factory,
+                                 token_headers_factory,
+                                 product_factory,
+                                 zone_factory,
+                                 product_type_factory,
+                                 zone_type_factory,
+                                 ):
         password = "test"
-        user = user_factory(password=password, role_id=1)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(password=password, role_name="Администратор")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()
@@ -26,29 +26,29 @@ class TestProductZone:
         zone = zone_factory(type_id=zone_type.id, user_id=worker.id)
 
         data = {
-          "productId": product.id,
-          "zoneId": zone.id,
-          "count": 10
+            "productId": product.id,
+            "zoneId": zone.id,
+            "count": 10
         }
         response = self.client.post(
             "/api/v1/product_zone",
             json=data,
             headers=headers
         )
-        assert response.status_code == 200
+        assert response.status_code == 201
 
     def test_product_zone_update(self,
-                        user_factory,
-                        token_headers_factory,
-                        product_type_factory,
-                        zone_type_factory,
-                        product_factory,
-                        zone_factory,
-                        product_zone_factory
-                        ):
+                                 user_factory,
+                                 token_headers_factory,
+                                 product_type_factory,
+                                 zone_type_factory,
+                                 product_factory,
+                                 zone_factory,
+                                 product_zone_factory
+                                 ):
         password = "test"
-        user = user_factory(password=password, role_id=1)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(password=password, role_name="Администратор")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()
@@ -68,18 +68,18 @@ class TestProductZone:
         assert response.status_code == 200
 
     def test_product_zone_update_wrong_data(self,
-                                   user_factory,
-                                   token_headers_factory,
-                                   product_factory,
-                                   zone_factory,
-                                   product_type_factory,
-                                   zone_type_factory,
-                                   product_zone_factory,
+                                            user_factory,
+                                            token_headers_factory,
+                                            product_factory,
+                                            zone_factory,
+                                            product_type_factory,
+                                            zone_type_factory,
+                                            product_zone_factory,
 
-                                   ):
+                                            ):
         password = "test"
-        user = user_factory(password=password, role_id=1)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(password=password, role_name="Администратор")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()
@@ -99,17 +99,17 @@ class TestProductZone:
         assert response.status_code == 400
 
     def test_product_zone_delete(self,
-                        user_factory,
-                        token_headers_factory,
-                        product_factory,
-                        zone_factory,
-                        product_type_factory,
-                        zone_type_factory,
-                        product_zone_factory,
-                        ):
+                                 user_factory,
+                                 token_headers_factory,
+                                 product_factory,
+                                 zone_factory,
+                                 product_type_factory,
+                                 zone_type_factory,
+                                 product_zone_factory,
+                                 ):
         password = "test"
-        user = user_factory(password=password, role_id=1)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(password=password, role_name="Администратор")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()
@@ -125,17 +125,17 @@ class TestProductZone:
         assert response.status_code == 204
 
     def test_product_zone_delete_wrong_id(self,
-                                 user_factory,
-                                 token_headers_factory,
-                                 product_factory,
-                                 zone_factory,
-                                 product_type_factory,
-                                 zone_type_factory,
-                                 product_zone_factory,
-                                 ):
+                                          user_factory,
+                                          token_headers_factory,
+                                          product_factory,
+                                          zone_factory,
+                                          product_type_factory,
+                                          zone_type_factory,
+                                          product_zone_factory,
+                                          ):
         password = "test"
-        user = user_factory(password=password, role_id=1)
-        worker = user_factory(login="worker", password=password, role_id=3)
+        user = user_factory(password=password, role_name="Администратор")
+        worker = user_factory(login="worker", password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()

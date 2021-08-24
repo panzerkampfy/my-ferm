@@ -18,6 +18,7 @@ router = APIRouter()
 @router.post(
     "/product_zone",
     response_model=schemas.ProductZone,
+    status_code=201
 )
 async def create_product_zone(
         create_data: schemas.ProductZoneCreate,

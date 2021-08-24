@@ -1,4 +1,6 @@
 import factory
+
+import crud
 import models
 from db import session
 
@@ -12,6 +14,11 @@ class BaseType(factory.alchemy.SQLAlchemyModelFactory):
     name = "test messages"
 
 
+class RoleFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.Role
+
+
 class UserFactory(factory.alchemy.SQLAlchemyModelFactory):
     class Meta(BaseMeta):
         model = models.User
@@ -20,6 +27,7 @@ class UserFactory(factory.alchemy.SQLAlchemyModelFactory):
     middle_name = "пользователь"
     last_name = "пользователь"
     login = "user"
+    # role_id = Meta.sqlalchemy_session.query(models.Role).filter(models.Role.name == role_name).one()
 
     @classmethod
     def _create(cls, model_class, *args, **kwargs):
@@ -33,8 +41,8 @@ class UserFactory(factory.alchemy.SQLAlchemyModelFactory):
         if extracted:
             self.role = (
                 UserFactory._meta.sqlalchemy_session.query(models.Role)
-                .filter(models.Role.code == extracted)
-                .one()
+                    .filter(models.Role.name == extracted)
+                    .one()
             )
             UserFactory._meta.sqlalchemy_session.flush()
 

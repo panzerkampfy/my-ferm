@@ -19,6 +19,7 @@ router = APIRouter()
 @router.post(
     "/product",
     response_model=schemas.Product,
+    status_code=201
 )
 async def create_product(
         create_data: schemas.ProductCreate,
@@ -37,6 +38,7 @@ async def create_product(
 @router.post(
     "/product/type",
     response_model=schemas.ProductType,
+    status_code=201
 )
 async def create_product_type(
         create_data: schemas.ProductTypeCreate,

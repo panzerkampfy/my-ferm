@@ -18,6 +18,7 @@ router = APIRouter()
 @router.post(
     "/storage",
     response_model=schemas.Storage,
+    status_code=201
 )
 async def create_storage_product(
         create_data: schemas.StorageCreate,

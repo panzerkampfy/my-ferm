@@ -4,7 +4,7 @@ import pytest
 from fastapi.testclient import TestClient
 from api import deps
 from db.session import SessionLocal, engine
-from main import app
+from core.main import app
 from . import factories
 
 
@@ -30,6 +30,11 @@ def db(db_session) -> Generator:
 @pytest.fixture(scope="module")
 def client():
     return TestClient(app)
+
+
+@pytest.fixture()
+def role_factory():
+    return factories.RoleFactory
 
 
 @pytest.fixture()

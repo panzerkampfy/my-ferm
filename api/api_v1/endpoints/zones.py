@@ -17,6 +17,7 @@ router = APIRouter()
 @router.post(
     "/zone",
     response_model=schemas.Zone,
+    status_code=201
 )
 async def create_zone(
         create_data: schemas.ZoneCreate,
@@ -34,6 +35,7 @@ async def create_zone(
 @router.post(
     "/zone/type",
     response_model=schemas.ZoneType,
+    status_code=201
 )
 async def create_zone_type(
         create_data: schemas.ZoneTypeCreate,

@@ -1,18 +1,19 @@
 import pytest
 
 
-class TestZone:
+class TestProduct:
     @pytest.fixture(autouse=True)
     def setup(self, client, db):
         self.client = client
         self.db = db
 
-    def test_product_create(self, user_factory, token_headers_factory):
+    def test_product_create(self, user_factory, token_headers_factory, product_type_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="Администратор")
         headers = token_headers_factory.create(user.login, password)
+        product_type = product_type_factory()
         data = {
-          "typeId": 1,
+          "typeId": product_type.id,
           "title": "string",
           "grade": "string",
           "count": 3
@@ -22,14 +23,15 @@ class TestZone:
             json=data,
             headers=headers
         )
-        assert response.status_code == 200
+        assert response.status_code == 201
 
-    def test_product_create_wrong_credentials(self, user_factory, token_headers_factory):
+    def test_product_create_wrong_credentials(self, user_factory, token_headers_factory, product_type_factory):
         password = "test"
-        user = user_factory(password=password, role_id=3)
+        user = user_factory(password=password, role_name="Работник")
         headers = token_headers_factory.create(user.login, password)
+        product_type = product_type_factory()
         data = {
-            "typeId": 1,
+            "typeId": product_type.id,
             "title": "string",
             "grade": "string",
             "count": 3
@@ -43,7 +45,7 @@ class TestZone:
 
     def test_product_update(self, user_factory, token_headers_factory, product_factory, product_type_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="Администратор")
         headers = token_headers_factory.create(user.login, password)
         product_type = product_type_factory()
         product = product_factory(type_id=product_type.id)
@@ -59,10 +61,10 @@ class TestZone:
 
     def test_product_update_wrong_data(self, user_factory, token_headers_factory, product_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="Администратор")
         headers = token_headers_factory.create(user.login, password)
         data = {
-            "typeId": 10
+            "typeId": -10122
         }
         product = product_factory()
         response = self.client.patch(
@@ -72,11 +74,12 @@ class TestZone:
         )
         assert response.status_code == 400
 
-    def test_product_delete(self, user_factory, token_headers_factory, product_factory):
+    def test_product_delete(self, user_factory, token_headers_factory, product_factory, product_type_factory):
         password = "test"
         user = user_factory(password=password, role_id=1)
         headers = token_headers_factory.create(user.login, password)
-        product = product_factory()
+        product_type = product_type_factory()
+        product = product_factory(type_id=product_type.id)
         response = self.client.delete(
             "/api/v1/product?id=" + str(product.id),
             headers=headers
@@ -106,7 +109,7 @@ class TestProductType:
 
     def test_product_type_create(self, user_factory, token_headers_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="Администратор")
         headers = token_headers_factory.create(user.login, password)
         data = {
           "name": "тест мессагес",
@@ -116,7 +119,7 @@ class TestProductType:
             json=data,
             headers=headers
         )
-        assert response.status_code == 200
+        assert response.status_code == 201
 
     def test_product_type_create_wrong_credentials(self, user_factory, token_headers_factory):
         password = "test"

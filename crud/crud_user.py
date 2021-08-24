@@ -24,10 +24,10 @@ class CRUDUser(CRUDBase[User, UserCreate, None]):
         return user
 
     async def is_admin_user(self, user: User):
-        return user.role_id == 1
+        return user.role.name == "Администратор"
 
     async def is_manager_user(self, user: User):
-        if user.role_id == 2:
+        if user.role.name == "Менеджер":
             return True
         else:
             return await self.is_admin_user(user=user)
