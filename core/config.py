@@ -1,7 +1,7 @@
 import secrets
-from typing import List, Optional
+from typing import List
 
-from pydantic import BaseSettings, HttpUrl, validator
+from pydantic import BaseSettings
 
 
 class Settings(BaseSettings):
@@ -19,6 +19,10 @@ class Settings(BaseSettings):
 
     FIRST_ADMIN_USERNAME: str = "admin"
     FIRST_ADMIN_PASSWORD: str = "admin"
+
+    FIRST_MANAGER_USERNAME: str = "manager"
+    FIRST_MANAGER_PASSWORD: str = "manager"
+
 
     ENV_NAME: str = "development"
     MEDIA_DIR: str = "/media/"

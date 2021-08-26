@@ -10,7 +10,8 @@ from .users import (  # noqa: F401
     UserCreate,
     UserUpdate,
     ResetPassword,
-    TokenPayload
+    TokenPayload,
+    OAuth2ComplaintToken
 )
 from .types import (
     Role,

@@ -1,6 +1,6 @@
 # PostgreSQL
 # ------------------------------------------------------------------------------
-POSTGRES_HOST=myferm_postgres_local
+POSTGRES_HOST=postgres_local
 POSTGRES_PORT=5432
 POSTGRES_DB=myferm
 POSTGRES_USER=user

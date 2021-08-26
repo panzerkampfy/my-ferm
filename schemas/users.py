@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import Optional
 
+from pydantic import BaseModel
+
 from schemas import APIModel
 
 
@@ -44,3 +46,9 @@ class Token(APIModel):
 
 class TokenPayload(APIModel):
     sub: int
+
+
+class OAuth2ComplaintToken(BaseModel):
+    access_token: str
+    token_type: str
+

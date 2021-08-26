@@ -1,5 +1,3 @@
-import logging
-
 from db.session import SessionLocal
 from tenacity import retry, stop_after_attempt, wait_fixed
 

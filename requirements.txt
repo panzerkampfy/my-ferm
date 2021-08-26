@@ -34,6 +34,7 @@ pytest-factoryboy==2.1.0
 python-dateutil==2.8.1
 python-editor==1.0.4
 python-jose==3.3.0
+python-multipart==0.0.5
 python-stdnum==1.16
 redis==3.5.3
 regex==2021.8.3

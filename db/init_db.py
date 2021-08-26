@@ -10,31 +10,60 @@ def init_db(db: Session) -> None:
         lambda db: (
             models.Role,
             dict(
-                defaults=dict(name="Администратор", description="Роль администратора"),
+                name="admin", description="Роль администратора"
+                # defaults=dict(name="admin", description="Роль администратора"),
             ),
         ),
         lambda db: (
             models.Role,
             dict(
-                defaults=dict(name="Менеджер", description="Позиция менеджера"),
+                name="manager", description="Роль менеджера"
+                # defaults=dict(name="manager", description="Роль менеджера"),
             ),
         ),
         lambda db: (
             models.Role,
             dict(
-               defaults=dict(name="Работник", description="Позиция работника"),
+                name="worker", description="Позиция работника"
+                # defaults=dict(name="worker", description="Позиция работника"),
             ),
         ),
         lambda db: (
             models.User,
             dict(
                 password=settings.FIRST_ADMIN_PASSWORD,
-                role_id=1,
+                role_id=db.query(models.Role).filter(models.Role.name == "admin").first().id,
                 defaults=dict(
                     first_name=settings.FIRST_ADMIN_USERNAME,
                     middle_name=settings.FIRST_ADMIN_USERNAME,
                     last_name=settings.FIRST_ADMIN_USERNAME,
                     login=settings.FIRST_ADMIN_USERNAME,
+                ),
+            ),
+        ),
+        lambda db: (
+            models.User,
+            dict(
+                password=settings.FIRST_MANAGER_PASSWORD,
+                role_id=db.query(models.Role).filter(models.Role.name == "manager").first().id,
+                defaults=dict(
+                    first_name=settings.FIRST_MANAGER_USERNAME,
+                    middle_name=settings.FIRST_MANAGER_USERNAME,
+                    last_name=settings.FIRST_MANAGER_USERNAME,
+                    login=settings.FIRST_MANAGER_USERNAME,
+                ),
+            ),
+        ),
+        lambda db: (
+            models.User,
+            dict(
+                password="worker",
+                role_id=db.query(models.Role).filter(models.Role.name == "worker").first().id,
+                defaults=dict(
+                    first_name="worker",
+                    middle_name="worker",
+                    last_name="worker",
+                    login="worker",
                 ),
             ),
         ),

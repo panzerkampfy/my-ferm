@@ -3,6 +3,7 @@ from datetime import timedelta
 from typing import Any
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
+from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.exc import IntegrityError
 from starlette import status
 from starlette.responses import Response
@@ -64,3 +65,25 @@ async def token_login(
         db, username=login_data.login, password=login_data.password
     )
     return response_login(user)
+
+
+@router.post(
+    "/login/oauth",
+    response_model=schemas.OAuth2ComplaintToken,
+    responses={
+        400: {"model": schemas.GenericHTTPError, "description": "Invalid credentials"},
+    },
+)
+async def oauth_login(
+    db: Session = Depends(deps.get_db),
+    login_data: OAuth2PasswordRequestForm = Depends(),
+) -> Any:
+    """
+    OAuth2 compatible token login, get an access token for future requests
+    """
+    user = await crud.user.authenticate(
+        db, username=login_data.username, password=login_data.password
+    )
+    return response_login(user)
+
+
