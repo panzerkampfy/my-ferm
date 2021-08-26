@@ -6,6 +6,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.exc import IntegrityError
 
 import crud
+import models
 import schemas
 from api import deps
 from api.api_v1.exceptions import ValidationError
@@ -37,7 +38,7 @@ def response_login(user):
 async def register(
         signup_data: schemas.UserCreate,
         db: Session = Depends(deps.get_db),
-        # admin: models.User = Depends(deps.get_current_admin_user),
+        admin: models.User = Depends(deps.get_current_admin_user),
 ) -> Any:
     last_name = jsonable_encoder(signup_data, by_alias=False)['last_name']
     if not has_cyr(last_name):
