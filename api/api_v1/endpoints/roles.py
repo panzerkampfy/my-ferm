@@ -1,6 +1,6 @@
 from typing import List, Any
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from starlette.responses import Response
 
 import crud

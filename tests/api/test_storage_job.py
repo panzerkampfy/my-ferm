@@ -20,8 +20,8 @@ class TestStorageJob:
                                 job_factory
                                 ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()
@@ -59,8 +59,8 @@ class TestStorageJob:
                                 storage_job_factory
                                 ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()
@@ -97,8 +97,8 @@ class TestStorageJob:
                                            storage_job_factory
                                            ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()
@@ -136,8 +136,8 @@ class TestStorageJob:
                                 storage_job_factory
                                 ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()
@@ -170,8 +170,8 @@ class TestStorageJob:
                                          storage_job_factory
                                          ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()

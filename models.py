@@ -1,5 +1,5 @@
 from db.base_class import Base  # noqa
-from sqlalchemy import Column, Date, ForeignKey, String, INTEGER, DateTime, func
+from sqlalchemy import Column, ForeignKey, String, INTEGER, DateTime, func
 from sqlalchemy.orm import relationship
 
 
@@ -15,7 +15,7 @@ class Role(Base):
 class User(Base):
     __tablename__ = "users"
 
-    first_name = Column(String, nullable=False)
+    first_name = Column(String, nullable=True)
     middle_name = Column(String, nullable=True)
     last_name = Column(String, nullable=False)
 

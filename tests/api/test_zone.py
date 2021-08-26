@@ -9,7 +9,7 @@ class TestZone:
 
     def test_zone_create(self, user_factory, token_headers_factory, zone_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         zone_type = zone_type_factory()
         data = {
@@ -27,7 +27,7 @@ class TestZone:
 
     def test_zone_create_wrong_data(self, user_factory, token_headers_factory, zone_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         zone_type = zone_type_factory()
         data = {
@@ -45,7 +45,7 @@ class TestZone:
 
     def test_zone_create_wrong_credentials(self, user_factory, token_headers_factory, zone_type_factory):
         password = "test"
-        user = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
         zone_type = zone_type_factory()
         data = {
@@ -63,7 +63,7 @@ class TestZone:
 
     def test_zone_update(self, user_factory, token_headers_factory, zone_factory, zone_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         data = {
           "title": "вhhhhhhh",
@@ -80,7 +80,7 @@ class TestZone:
 
     def test_zone_update_wrong_data(self, user_factory, token_headers_factory, zone_factory, zone_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
 
         headers = token_headers_factory.create(user.login, password)
         data = {
@@ -97,7 +97,7 @@ class TestZone:
 
     def test_zone_delete(self, user_factory, token_headers_factory, zone_factory, zone_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         zone_type = zone_type_factory()
         zone = zone_factory(type_id=zone_type.id, user_id=user.id)
@@ -109,7 +109,7 @@ class TestZone:
 
     def test_zone_delete_wrong_id(self, user_factory, token_headers_factory, zone_factory, zone_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         zone_type = zone_type_factory()
         zone = zone_factory(type_id=zone_type.id, user_id=user.id)
@@ -131,7 +131,7 @@ class TestZoneType:
 
     def test_zone_type_create(self, user_factory, token_headers_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         data = {
           "name": "тест мессагес",
@@ -145,7 +145,7 @@ class TestZoneType:
 
     def test_zone_type_create_wrong_credentials(self, user_factory, token_headers_factory):
         password = "test"
-        user = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
         data = {
             "name": "тест мессагес",
@@ -159,7 +159,7 @@ class TestZoneType:
 
     def test_zone_type_update(self, user_factory, token_headers_factory, zone_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         zone_type = zone_type_factory()
         data = {
@@ -174,7 +174,7 @@ class TestZoneType:
 
     def test_zone_type_delete(self, user_factory, token_headers_factory, zone_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         zone_type = zone_type_factory()
         response = self.client.delete(
@@ -185,7 +185,7 @@ class TestZoneType:
 
     def test_zone_type_delete_wrong_id(self, user_factory, token_headers_factory, zone_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         zone_type = zone_type_factory()
         response = self.client.delete(

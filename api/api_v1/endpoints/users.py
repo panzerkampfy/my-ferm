@@ -1,7 +1,5 @@
 from typing import Any, List
 from fastapi import APIRouter, Depends
-from fastapi.encoders import jsonable_encoder
-from starlette.responses import Response
 
 import crud
 import models

@@ -1,6 +1,4 @@
 import factory
-
-import crud
 import models
 from db import session
 
@@ -26,8 +24,7 @@ class UserFactory(factory.alchemy.SQLAlchemyModelFactory):
     first_name = "пользователь"
     middle_name = "пользователь"
     last_name = "пользователь"
-    login = "user"
-    # role_id = Meta.sqlalchemy_session.query(models.Role).filter(models.Role.name == role_name).one()
+    login = factory.Sequence(lambda n: "test-user-%d" % n)
 
     @classmethod
     def _create(cls, model_class, *args, **kwargs):

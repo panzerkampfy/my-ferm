@@ -12,8 +12,8 @@ class TestUsers:
                           token_headers_factory,
                           ):
         password = "test"
-        user = user_factory(login="manager", password=password, role_name="Менеджер")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="manager")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
         data = {
             "login": "string",
@@ -34,8 +34,8 @@ class TestUsers:
                                     token_headers_factory,
                                     ):
         password = "test"
-        user = user_factory(login="manager", password=password, role_name="Менеджер")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="manager")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
         data = {
             "login": "string",

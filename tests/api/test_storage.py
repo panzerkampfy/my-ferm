@@ -9,7 +9,7 @@ class TestStorage:
 
     def test_storage_create(self, user_factory, token_headers_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         data = {
           "name": "string",
@@ -24,7 +24,7 @@ class TestStorage:
 
     def test_storage_create_wrong_credentials(self, user_factory, token_headers_factory):
         password = "test"
-        user = user_factory(password=password, role_id=3)
+        user = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
         data = {
             "name": "string",
@@ -39,7 +39,7 @@ class TestStorage:
 
     def test_storage_update(self, user_factory, token_headers_factory, storage_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         data = {
             "name": "string",
@@ -55,7 +55,7 @@ class TestStorage:
 
     def test_zone_delete(self, user_factory, token_headers_factory, storage_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         storage = storage_factory()
         response = self.client.delete(
@@ -66,7 +66,7 @@ class TestStorage:
 
     def test_zone_delete_wrong_id(self, user_factory, token_headers_factory, storage_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         storage = storage_factory()
         response = self.client.delete(

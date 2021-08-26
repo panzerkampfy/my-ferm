@@ -18,8 +18,8 @@ class TestJob:
                         product_zone_factory
                         ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()
@@ -55,8 +55,8 @@ class TestJob:
                         job_factory
                         ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()
@@ -90,8 +90,8 @@ class TestJob:
                                    job_factory
                                    ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()
@@ -125,8 +125,8 @@ class TestJob:
                         job_factory
                         ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()
@@ -154,8 +154,8 @@ class TestJob:
                                  job_factory
                                  ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         job_type = job_type_factory()
@@ -183,7 +183,7 @@ class TestJobType:
 
     def test_job_type_create(self, user_factory, token_headers_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         data = {
           "name": "тест мессагес",
@@ -197,7 +197,7 @@ class TestJobType:
 
     def test_job_type_create_wrong_credentials(self, user_factory, token_headers_factory):
         password = "test"
-        user = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
         data = {
             "name": "тест мессагес",
@@ -211,7 +211,7 @@ class TestJobType:
 
     def test_job_type_update(self, user_factory, token_headers_factory, job_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         job_type = job_type_factory()
         data = {
@@ -226,7 +226,7 @@ class TestJobType:
 
     def test_job_type_delete(self, user_factory, token_headers_factory, job_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         job_type = job_type_factory()
         response = self.client.delete(
@@ -237,7 +237,7 @@ class TestJobType:
 
     def test_job_type_delete_wrong_id(self, user_factory, token_headers_factory, job_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         job_type = job_type_factory()
         response = self.client.delete(

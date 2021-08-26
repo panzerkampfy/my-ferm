@@ -1,18 +1,14 @@
-import re
 from datetime import timedelta
 from typing import Any
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.encoders import jsonable_encoder
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.exc import IntegrityError
-from starlette import status
-from starlette.responses import Response
 
 import crud
-import models
 import schemas
 from api import deps
-from api.api_v1.exceptions import ValidationError, NotFoundError
+from api.api_v1.exceptions import ValidationError
 from core import security
 from core.config import settings
 from sqlalchemy.orm import Session

@@ -83,7 +83,6 @@ async def get_product_types(
     status_code=204,
     responses={
         403: {"model": schemas.GenericHTTPError, "description": "Permission denied"},
-        404: {"model": schemas.GenericHTTPError, "description": "Product not found"},
     },
 )
 async def delete_product(
@@ -93,6 +92,7 @@ async def delete_product(
 ) -> Any:
     try:
         await crud.product.remove(db=db, id=id)
+        return Response(status_code=204)
     except:
         raise NotFoundError(detail="Product not found")
 
@@ -102,7 +102,6 @@ async def delete_product(
     status_code=204,
     responses={
         403: {"model": schemas.GenericHTTPError, "description": "Permission denied"},
-        404: {"model": schemas.GenericHTTPError, "description": "Product type not found"},
     },
 )
 async def delete_product_types(
@@ -112,8 +111,9 @@ async def delete_product_types(
 ) -> Any:
     try:
         await crud.product_type.remove(db=db, id=id)
+        return Response(status_code=204)
     except:
-        raise NotFoundError(detail="Product not found")
+        raise NotFoundError(detail="Product type not found")
 
 
 @router.patch(
@@ -121,7 +121,6 @@ async def delete_product_types(
     status_code=200,
     responses={
         403: {"model": schemas.GenericHTTPError, "description": "Permission denied"},
-        404: {"model": schemas.GenericHTTPError, "description": "Product not found"},
     },
     response_model=schemas.Product
 )
@@ -147,7 +146,6 @@ async def update_product(
     status_code=200,
     responses={
         403: {"model": schemas.GenericHTTPError, "description": "Permission denied"},
-        404: {"model": schemas.GenericHTTPError, "description": "Product zone not found"},
     },
     response_model=schemas.ProductType
 )

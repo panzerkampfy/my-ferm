@@ -9,7 +9,7 @@ class TestProduct:
 
     def test_product_create(self, user_factory, token_headers_factory, product_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         product_type = product_type_factory()
         data = {
@@ -27,7 +27,7 @@ class TestProduct:
 
     def test_product_create_wrong_credentials(self, user_factory, token_headers_factory, product_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
         product_type = product_type_factory()
         data = {
@@ -45,7 +45,7 @@ class TestProduct:
 
     def test_product_update(self, user_factory, token_headers_factory, product_factory, product_type_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         product_type = product_type_factory()
         product = product_factory(type_id=product_type.id)
@@ -61,7 +61,7 @@ class TestProduct:
 
     def test_product_update_wrong_data(self, user_factory, token_headers_factory, product_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         data = {
             "typeId": -10122
@@ -76,7 +76,7 @@ class TestProduct:
 
     def test_product_delete(self, user_factory, token_headers_factory, product_factory, product_type_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         product_type = product_type_factory()
         product = product_factory(type_id=product_type.id)
@@ -88,7 +88,7 @@ class TestProduct:
 
     def test_product_delete_wrong_id(self, user_factory, token_headers_factory, product_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         product = product_factory()
         response = self.client.delete(
@@ -109,7 +109,7 @@ class TestProductType:
 
     def test_product_type_create(self, user_factory, token_headers_factory):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         data = {
           "name": "тест мессагес",
@@ -123,7 +123,7 @@ class TestProductType:
 
     def test_product_type_create_wrong_credentials(self, user_factory, token_headers_factory):
         password = "test"
-        user = user_factory(password=password, role_id=3)
+        user = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
         data = {
             "name": "тест мессагес",
@@ -137,7 +137,7 @@ class TestProductType:
 
     def test_product_type_update(self, user_factory, token_headers_factory, product_type_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         product_type = product_type_factory()
         data = {
@@ -152,7 +152,7 @@ class TestProductType:
 
     def test_product_type_delete(self, user_factory, token_headers_factory, product_type_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         product_type = product_type_factory()
         response = self.client.delete(
@@ -163,7 +163,7 @@ class TestProductType:
 
     def test_product_type_delete_wrong_id(self, user_factory, token_headers_factory, product_type_factory):
         password = "test"
-        user = user_factory(password=password, role_id=1)
+        user = user_factory(password=password, role_name="admin")
         headers = token_headers_factory.create(user.login, password)
         product_type = product_type_factory()
         response = self.client.delete(

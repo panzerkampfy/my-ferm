@@ -16,8 +16,8 @@ class TestProductZone:
                                  zone_type_factory,
                                  ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()
@@ -47,8 +47,8 @@ class TestProductZone:
                                  product_zone_factory
                                  ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()
@@ -78,8 +78,8 @@ class TestProductZone:
 
                                             ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()
@@ -108,8 +108,8 @@ class TestProductZone:
                                  product_zone_factory,
                                  ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()
@@ -134,8 +134,8 @@ class TestProductZone:
                                           product_zone_factory,
                                           ):
         password = "test"
-        user = user_factory(password=password, role_name="Администратор")
-        worker = user_factory(login="worker", password=password, role_name="Работник")
+        user = user_factory(password=password, role_name="admin")
+        worker = user_factory(password=password, role_name="worker")
         headers = token_headers_factory.create(user.login, password)
 
         product_type = product_type_factory()
