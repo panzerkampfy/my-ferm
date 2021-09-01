@@ -66,3 +66,14 @@ class TokenHeadersFactory(TokenFactory):
         return {"Authorization": f"Bearer {token}"}
 
 
+class ZoneFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.Zone
+
+    title = "test messages"
+    capacity = 10
+
+
+class ZoneTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.ZoneType
