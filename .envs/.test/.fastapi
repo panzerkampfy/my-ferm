@@ -1,2 +1,0 @@
-SQLALCHEMY_DATABASE_URI=postgresql://user:password@postgres_test:5432/myferm
-ENV_NAME=test
