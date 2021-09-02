@@ -61,3 +61,10 @@ def product_factory():
 def product_type_factory():
     return factories.ProductTypeFactory
 
+def zone_factory():
+    return factories.ZoneFactory
+
+
+@pytest.fixture()
+def zone_type_factory():
+    return factories.ZoneTypeFactory
