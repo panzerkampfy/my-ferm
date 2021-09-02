@@ -104,3 +104,10 @@ class JobFactory(factory.alchemy.SQLAlchemyModelFactory):
 class JobTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
     class Meta(BaseMeta):
         model = models.JobType
+
+
+class ProductZoneFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.ProductZone
+
+    count = 10
