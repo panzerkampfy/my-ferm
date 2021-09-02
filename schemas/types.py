@@ -18,3 +18,11 @@ class Role(TypesBase):
 
 class RoleCreate(TypesCreateBase):
     pass
+
+
+class ProductType(TypesBase):
+    pass
+
+
+class ProductTypeCreate(TypesCreateBase):
+    pass
