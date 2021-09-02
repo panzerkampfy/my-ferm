@@ -53,6 +53,21 @@ def token_headers_factory(client: TestClient):
 
 
 @pytest.fixture()
+def zone_factory():
+    return factories.ZoneFactory
+
+
+@pytest.fixture()
+def zone_type_factory():
+    return factories.ZoneTypeFactory
+
+
+@pytest.fixture()
+def storage_factory():
+    return factories.StorageFactory
+
+
+@pytest.fixture()
 def product_factory():
     return factories.ProductFactory
 
@@ -62,13 +77,9 @@ def product_type_factory():
     return factories.ProductTypeFactory
 
 
-def zone_factory():
-    return factories.ZoneFactory
-
-
 @pytest.fixture()
-def zone_type_factory():
-    return factories.ZoneTypeFactory
+def product_zone_factory():
+    return factories.ProductZoneFactory
 
 
 @pytest.fixture()
@@ -82,5 +93,5 @@ def job_type_factory():
 
 
 @pytest.fixture()
-def product_zone_factory():
-    return factories.ProductZoneFactory
+def storage_job_factory():
+    return factories.StorageJobFactory

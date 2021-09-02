@@ -66,6 +66,27 @@ class TokenHeadersFactory(TokenFactory):
         return {"Authorization": f"Bearer {token}"}
 
 
+class ZoneFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.Zone
+
+    title = "test messages"
+    capacity = 10
+
+
+class ZoneTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.ZoneType
+
+
+class StorageFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.Storage
+
+    name = "test messages"
+    count = 10
+
+
 class ProductFactory(factory.alchemy.SQLAlchemyModelFactory):
     class Meta(BaseMeta):
         model = models.Product
@@ -78,19 +99,6 @@ class ProductFactory(factory.alchemy.SQLAlchemyModelFactory):
 class ProductTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
     class Meta(BaseMeta):
         model = models.ProductType
-
-
-class ZoneFactory(factory.alchemy.SQLAlchemyModelFactory):
-    class Meta(BaseMeta):
-        model = models.Zone
-
-    title = "test messages"
-    capacity = 10
-
-
-class ZoneTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
-    class Meta(BaseMeta):
-        model = models.ZoneType
 
 
 class JobFactory(factory.alchemy.SQLAlchemyModelFactory):
@@ -109,5 +117,12 @@ class JobTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
 class ProductZoneFactory(factory.alchemy.SQLAlchemyModelFactory):
     class Meta(BaseMeta):
         model = models.ProductZone
+
+    count = 10
+
+
+class StorageJobFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.StorageJob
 
     count = 10
