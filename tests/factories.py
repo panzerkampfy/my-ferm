@@ -79,6 +79,7 @@ class ProductTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
     class Meta(BaseMeta):
         model = models.ProductType
 
+
 class ZoneFactory(factory.alchemy.SQLAlchemyModelFactory):
     class Meta(BaseMeta):
         model = models.Zone
@@ -90,3 +91,16 @@ class ZoneFactory(factory.alchemy.SQLAlchemyModelFactory):
 class ZoneTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
     class Meta(BaseMeta):
         model = models.ZoneType
+
+
+class JobFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.Job
+
+    title = "test messages"
+    description = "test"
+
+
+class JobTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.JobType
