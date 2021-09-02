@@ -91,3 +91,15 @@ class Job(Base):
 
     type = relationship("JobType", back_populates="jobs")
     users = relationship("User", back_populates="jobs")
+
+
+class ProductZone(Base):
+    __tablename__ = "product_zone"
+
+    product_id = Column(INTEGER, ForeignKey("products.id", ondelete="CASCADE"))
+    zone_id = Column(INTEGER, ForeignKey("zones.id", ondelete="CASCADE"))
+    count = Column(INTEGER, nullable=False)
+
+    zone = relationship("Zone", back_populates="product_zones")
+    product = relationship("Product", back_populates="product_zones")
+    jobs = relationship("Job", back_populates="product_zones")
