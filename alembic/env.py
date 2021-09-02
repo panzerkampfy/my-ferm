@@ -9,9 +9,8 @@ import sys
 
 sys.path = ['', '..'] + sys.path[1:]
 
-
 import models
-from models import User, Role, ZoneType, Zone, Product, ProductType
+from models import User, Role, ZoneType, Zone, ProductType, Product, ProductZone, JobType, Job, StorageJob, Storage
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -24,6 +23,7 @@ fileConfig(config.config_file_name)
 # add your model's MetaData object here
 # for 'autogenerate' support
 target_metadata = models.Base.metadata
+
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
