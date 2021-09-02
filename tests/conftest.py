@@ -61,6 +61,7 @@ def product_factory():
 def product_type_factory():
     return factories.ProductTypeFactory
 
+
 def zone_factory():
     return factories.ZoneFactory
 
@@ -68,3 +69,13 @@ def zone_factory():
 @pytest.fixture()
 def zone_type_factory():
     return factories.ZoneTypeFactory
+
+
+@pytest.fixture()
+def job_factory():
+    return factories.JobFactory
+
+
+@pytest.fixture()
+def job_type_factory():
+    return factories.JobTypeFactory

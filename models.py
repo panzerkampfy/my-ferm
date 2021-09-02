@@ -30,6 +30,7 @@ class User(Base):
     role = relationship("Role", back_populates="users")
     zones = relationship("Zone", back_populates="users")
 
+
 class ProductType(Base):
     __tablename__ = "product_types"
 
@@ -46,6 +47,7 @@ class Product(Base):
 
     type_id = Column(INTEGER, ForeignKey("product_types.id", ondelete="CASCADE"))
     product_type = relationship("ProductType", back_populates="products")
+
 
 class ZoneType(Base):
     __tablename__ = "zone_types"
@@ -67,3 +69,25 @@ class Zone(Base):
     users = relationship("User", back_populates="zones")
     type = relationship("ZoneType", back_populates="zones")
 
+
+class JobType(Base):
+    __tablename__ = "job_types"
+
+    name = Column(String, nullable=False, unique=True)
+
+    jobs = relationship("Job", back_populates="type")
+
+
+class Job(Base):
+    __tablename__ = "jobs"
+
+    title = Column(String, nullable=False)
+    status = Column(String, nullable=False, default="Ожидает выполнения")
+    description = Column(String, nullable=True)
+    count = Column(INTEGER, nullable=True)
+    date = Column(DateTime, default=func.now())
+    user_id = Column(INTEGER, ForeignKey("users.id", ondelete="CASCADE"))
+    type_id = Column(INTEGER, ForeignKey("job_types.id", ondelete="CASCADE"))
+
+    type = relationship("JobType", back_populates="jobs")
+    users = relationship("User", back_populates="jobs")
