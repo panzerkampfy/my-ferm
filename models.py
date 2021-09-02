@@ -88,7 +88,6 @@ class Job(Base):
     date = Column(DateTime, default=func.now())
     user_id = Column(INTEGER, ForeignKey("users.id", ondelete="CASCADE"))
     type_id = Column(INTEGER, ForeignKey("job_types.id", ondelete="CASCADE"))
-    product_zone_id = Column(INTEGER, ForeignKey("product_zone.id"), nullable=True)
 
     type = relationship("JobType", back_populates="jobs")
     users = relationship("User", back_populates="jobs")
