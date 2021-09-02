@@ -103,3 +103,23 @@ class ProductZone(Base):
     zone = relationship("Zone", back_populates="product_zones")
     product = relationship("Product", back_populates="product_zones")
     jobs = relationship("Job", back_populates="product_zones")
+
+
+class Storage(Base):
+    __tablename__ = "storage"
+
+    name = Column(String, nullable=False)
+    count = Column(INTEGER, nullable=False)
+
+    storage_jobs = relationship("StorageJob", back_populates="storages")
+
+
+class StorageJob(Base):
+    __tablename__ = "storage_jobs"
+
+    storage_id = Column(INTEGER, ForeignKey("storage.id", ondelete="CASCADE"))
+    job_id = Column(INTEGER, ForeignKey("jobs.id", ondelete="CASCADE"))
+    count = Column(INTEGER, nullable=True)
+
+    jobs = relationship("Job", back_populates="storage_jobs")
+    storages = relationship("Storage", back_populates="storage_jobs")
