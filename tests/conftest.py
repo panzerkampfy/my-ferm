@@ -79,3 +79,8 @@ def job_factory():
 @pytest.fixture()
 def job_type_factory():
     return factories.JobTypeFactory
+
+
+@pytest.fixture()
+def product_zone_factory():
+    return factories.ProductZoneFactory
