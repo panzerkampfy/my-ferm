@@ -66,3 +66,15 @@ class TokenHeadersFactory(TokenFactory):
         return {"Authorization": f"Bearer {token}"}
 
 
+class ProductFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.Product
+
+    title = "test messages"
+    grade = "test"
+    count = 10
+
+
+class ProductTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.ProductType
