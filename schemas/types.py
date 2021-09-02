@@ -18,3 +18,11 @@ class Role(TypesBase):
 
 class RoleCreate(TypesCreateBase):
     pass
+
+
+class ZoneType(TypesBase):
+    pass
+
+
+class ZoneTypeCreate(TypesCreateBase):
+    pass
