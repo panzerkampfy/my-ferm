@@ -25,10 +25,20 @@ class ProductType(TypesBase):
 
 
 class ProductTypeCreate(TypesCreateBase):
+    pass
+
 
 class ZoneType(TypesBase):
     pass
 
 
 class ZoneTypeCreate(TypesCreateBase):
+    pass
+
+
+class JobType(TypesBase):
+    pass
+
+
+class JobTypeCreate(TypesCreateBase):
     pass
