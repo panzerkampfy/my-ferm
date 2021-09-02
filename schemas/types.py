@@ -20,6 +20,12 @@ class RoleCreate(TypesCreateBase):
     pass
 
 
+class ProductType(TypesBase):
+    pass
+
+
+class ProductTypeCreate(TypesCreateBase):
+
 class ZoneType(TypesBase):
     pass
 

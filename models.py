@@ -30,6 +30,22 @@ class User(Base):
     role = relationship("Role", back_populates="users")
     zones = relationship("Zone", back_populates="users")
 
+class ProductType(Base):
+    __tablename__ = "product_types"
+
+    name = Column(String, nullable=False, unique=True)
+    products = relationship("Product", back_populates="product_type")
+
+
+class Product(Base):
+    __tablename__ = "products"
+
+    title = Column(String, nullable=False)
+    grade = Column(String, nullable=True)
+    count = Column(INTEGER, nullable=False)
+
+    type_id = Column(INTEGER, ForeignKey("product_types.id", ondelete="CASCADE"))
+    product_type = relationship("ProductType", back_populates="products")
 
 class ZoneType(Base):
     __tablename__ = "zone_types"
@@ -50,3 +66,4 @@ class Zone(Base):
     product_zones = relationship("ProductZone", cascade="all, delete", passive_deletes=True)
     users = relationship("User", back_populates="zones")
     type = relationship("ZoneType", back_populates="zones")
+
