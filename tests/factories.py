@@ -119,3 +119,10 @@ class StorageJobFactory(factory.alchemy.SQLAlchemyModelFactory):
         model = models.StorageJob
 
     count = 10
+
+
+class ProductZoneFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.ProductZone
+
+    count = 10
