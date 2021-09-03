@@ -27,6 +27,7 @@ class User(Base):
     deleted_at = Column(DateTime(timezone=True), default=None)
 
     role_id = Column(INTEGER, ForeignKey("roles.id"))
+    jobs = relationship("Job", back_populates="users")
     zones = relationship("Zone", back_populates="users")
     role = relationship("Role", back_populates="users")
 
@@ -77,6 +78,7 @@ class Product(Base):
 
     type_id = Column(INTEGER, ForeignKey("product_types.id", ondelete="CASCADE"))
     product_type = relationship("ProductType", back_populates="products")
+    product_zones = relationship("ProductZone", back_populates="product")
 
 
 class JobType(Base):
@@ -97,10 +99,11 @@ class Job(Base):
     date = Column(DateTime, default=func.now())
     user_id = Column(INTEGER, ForeignKey("users.id", ondelete="CASCADE"))
     type_id = Column(INTEGER, ForeignKey("job_types.id", ondelete="CASCADE"))
+    product_zone_id = Column(INTEGER, ForeignKey("product_zone.id"), nullable=True)
 
     type = relationship("JobType", back_populates="jobs")
-    users = relationship("User", back_populates="jobs")
     storage_jobs = relationship("StorageJob", back_populates="jobs")
+    users = relationship("User", back_populates="jobs")
     product_zones = relationship("ProductZone", back_populates="jobs")
 
 
@@ -113,3 +116,15 @@ class StorageJob(Base):
 
     jobs = relationship("Job", back_populates="storage_jobs")
     storages = relationship("Storage", back_populates="storage_jobs")
+
+
+class ProductZone(Base):
+    __tablename__ = "product_zone"
+
+    product_id = Column(INTEGER, ForeignKey("products.id", ondelete="CASCADE"))
+    zone_id = Column(INTEGER, ForeignKey("zones.id", ondelete="CASCADE"))
+    count = Column(INTEGER, nullable=False)
+
+    zone = relationship("Zone", back_populates="product_zones")
+    product = relationship("Product", back_populates="product_zones")
+    jobs = relationship("Job", back_populates="product_zones")
