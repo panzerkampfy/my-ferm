@@ -50,3 +50,13 @@ def token_factory(client: TestClient):
 @pytest.fixture()
 def token_headers_factory(client: TestClient):
     return factories.TokenHeadersFactory(client)
+
+
+@pytest.fixture()
+def zone_factory():
+    return factories.ZoneFactory
+
+
+@pytest.fixture()
+def zone_type_factory():
+    return factories.ZoneTypeFactory
