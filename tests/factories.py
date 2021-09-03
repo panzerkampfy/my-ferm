@@ -85,3 +85,17 @@ class StorageFactory(factory.alchemy.SQLAlchemyModelFactory):
 
     name = "test messages"
     count = 10
+
+
+class ProductFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.Product
+
+    title = "test messages"
+    grade = "test"
+    count = 10
+
+
+class ProductTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.ProductType
