@@ -77,3 +77,11 @@ class ZoneFactory(factory.alchemy.SQLAlchemyModelFactory):
 class ZoneTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
     class Meta(BaseMeta):
         model = models.ZoneType
+
+
+class StorageFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.Storage
+
+    name = "test messages"
+    count = 10
