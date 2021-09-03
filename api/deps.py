@@ -1,6 +1,5 @@
 from typing import Generator, Optional
 
-from broadcaster import Broadcast
 from fastapi import Cookie, Depends, HTTPException, Query, WebSocket, status
 from fastapi.security import OAuth2PasswordBearer
 from jose import jwt
@@ -14,7 +13,6 @@ from pydantic import ValidationError
 from sqlalchemy.orm import Session
 
 reusable_oauth2 = OAuth2PasswordBearer(tokenUrl=f"{settings.API_PREFIX}/login/oauth")
-broadcast = Broadcast(settings.REDIS_URI)
 
 
 def get_db() -> Generator:
@@ -23,10 +21,6 @@ def get_db() -> Generator:
         yield db
     finally:
         db.close()
-
-
-def get_broadcast() -> Generator:
-    yield broadcast
 
 
 async def get_user_by_token(db: Session, token: str):

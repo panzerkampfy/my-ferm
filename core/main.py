@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from api.api_v1.api import router
-from api.deps import broadcast
 from core.config import settings
 from starlette.middleware.cors import CORSMiddleware
 
