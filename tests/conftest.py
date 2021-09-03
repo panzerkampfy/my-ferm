@@ -85,3 +85,8 @@ def job_factory():
 @pytest.fixture()
 def job_type_factory():
     return factories.JobTypeFactory
+
+
+@pytest.fixture()
+def storage_job_factory():
+    return factories.StorageJobFactory

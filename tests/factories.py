@@ -112,3 +112,10 @@ class JobFactory(factory.alchemy.SQLAlchemyModelFactory):
 class JobTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
     class Meta(BaseMeta):
         model = models.JobType
+
+
+class StorageJobFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.StorageJob
+
+    count = 10
