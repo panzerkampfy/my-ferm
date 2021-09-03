@@ -58,6 +58,8 @@ class Storage(Base):
     name = Column(String, nullable=False)
     count = Column(INTEGER, nullable=False)
 
+    storage_jobs = relationship("StorageJob", back_populates="storages")
+
 
 class ProductType(Base):
     __tablename__ = "product_types"
@@ -98,3 +100,16 @@ class Job(Base):
 
     type = relationship("JobType", back_populates="jobs")
     users = relationship("User", back_populates="jobs")
+    storage_jobs = relationship("StorageJob", back_populates="jobs")
+    product_zones = relationship("ProductZone", back_populates="jobs")
+
+
+class StorageJob(Base):
+    __tablename__ = "storage_jobs"
+
+    storage_id = Column(INTEGER, ForeignKey("storage.id", ondelete="CASCADE"))
+    job_id = Column(INTEGER, ForeignKey("jobs.id", ondelete="CASCADE"))
+    count = Column(INTEGER, nullable=True)
+
+    jobs = relationship("Job", back_populates="storage_jobs")
+    storages = relationship("Storage", back_populates="storage_jobs")
