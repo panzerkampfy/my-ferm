@@ -60,3 +60,8 @@ def zone_factory():
 @pytest.fixture()
 def zone_type_factory():
     return factories.ZoneTypeFactory
+
+
+@pytest.fixture()
+def storage_factory():
+    return factories.StorageFactory
