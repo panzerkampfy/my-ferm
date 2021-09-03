@@ -57,3 +57,21 @@ class Storage(Base):
 
     name = Column(String, nullable=False)
     count = Column(INTEGER, nullable=False)
+
+
+class ProductType(Base):
+    __tablename__ = "product_types"
+
+    name = Column(String, nullable=False, unique=True)
+    products = relationship("Product", back_populates="product_type")
+
+
+class Product(Base):
+    __tablename__ = "products"
+
+    title = Column(String, nullable=False)
+    grade = Column(String, nullable=True)
+    count = Column(INTEGER, nullable=False)
+
+    type_id = Column(INTEGER, ForeignKey("product_types.id", ondelete="CASCADE"))
+    product_type = relationship("ProductType", back_populates="products")
