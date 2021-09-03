@@ -11,7 +11,7 @@ sys.path = ['', '..'] + sys.path[1:]
 
 
 import models
-from models import User, Role, Zone, ZoneType
+from models import User, Role, Zone, ZoneType, Storage
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
