@@ -50,3 +50,10 @@ class Zone(Base):
     product_zones = relationship("ProductZone", cascade="all, delete", passive_deletes=True)
     users = relationship("User", back_populates="zones")
     type = relationship("ZoneType", back_populates="zones")
+
+
+class Storage(Base):
+    __tablename__ = "storage"
+
+    name = Column(String, nullable=False)
+    count = Column(INTEGER, nullable=False)
