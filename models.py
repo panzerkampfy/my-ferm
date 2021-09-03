@@ -27,5 +27,26 @@ class User(Base):
     deleted_at = Column(DateTime(timezone=True), default=None)
 
     role_id = Column(INTEGER, ForeignKey("roles.id"))
+    zones = relationship("Zone", back_populates="users")
     role = relationship("Role", back_populates="users")
 
+
+class ZoneType(Base):
+    __tablename__ = "zone_types"
+
+    name = Column(String, nullable=False, unique=True)
+    zones = relationship("Zone", back_populates="type")
+
+
+class Zone(Base):
+    __tablename__ = "zones"
+
+    title = Column(String, nullable=False)
+    capacity = Column(INTEGER, nullable=False)
+
+    type_id = Column(INTEGER, ForeignKey("zone_types.id", ondelete="CASCADE"))
+    user_id = Column(INTEGER, ForeignKey("users.id", ondelete="CASCADE"))
+
+    product_zones = relationship("ProductZone", cascade="all, delete", passive_deletes=True)
+    users = relationship("User", back_populates="zones")
+    type = relationship("ZoneType", back_populates="zones")
