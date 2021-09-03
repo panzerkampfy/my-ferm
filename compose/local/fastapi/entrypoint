@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -o errexit
+set -o pipefail
+set -o nounset
+
+# Let the DB start
+python db/wait_for_db.py
+
+# Run migrations
+alembic upgrade head
+
+# Create initial data in DB
+python db/init_db.py
+
+exec "$@"
