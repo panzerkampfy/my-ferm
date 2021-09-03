@@ -99,3 +99,16 @@ class ProductFactory(factory.alchemy.SQLAlchemyModelFactory):
 class ProductTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
     class Meta(BaseMeta):
         model = models.ProductType
+
+
+class JobFactory(factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.Job
+
+    title = "test messages"
+    description = "test"
+
+
+class JobTypeFactory(BaseType, factory.alchemy.SQLAlchemyModelFactory):
+    class Meta(BaseMeta):
+        model = models.JobType

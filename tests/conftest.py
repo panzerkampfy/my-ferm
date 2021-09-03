@@ -75,3 +75,13 @@ def product_factory():
 @pytest.fixture()
 def product_type_factory():
     return factories.ProductTypeFactory
+
+
+@pytest.fixture()
+def job_factory():
+    return factories.JobFactory
+
+
+@pytest.fixture()
+def job_type_factory():
+    return factories.JobTypeFactory
